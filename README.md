@@ -25,7 +25,7 @@ For browser checks against the production build, set READER_TEST_SERVER to previ
 
 ## Reading
 
-- Select India, the United States or the United Kingdom, and one of seven sections.
+- Select India, the United States, the United Kingdom, Canada or Australia, and one of seven sections.
 - Search headlines and publishers, filter by source, and choose chronological order.
 - Read the supplied summaries and open complete reports at their publishers.
 - Save up to 300 stories, track read/unread state, and export or import a reading-list backup of up to 2 MB.

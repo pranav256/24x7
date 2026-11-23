@@ -1,4 +1,10 @@
-export const countries = { in: 'India', us: 'United States', gb: 'United Kingdom' } as const
+export const countries = {
+  in: 'India',
+  us: 'United States',
+  gb: 'United Kingdom',
+  ca: 'Canada',
+  au: 'Australia',
+} as const
 export const categories = ['general', 'business', 'technology', 'science', 'health', 'sports', 'entertainment'] as const
 export type Country = keyof typeof countries
 export type Category = (typeof categories)[number]
