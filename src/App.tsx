@@ -208,7 +208,7 @@ export default function App() {
                 year: 'numeric',
               })}
             </time>
-            <span>India / United States / United Kingdom</span>
+            <span>India / United States / United Kingdom / Canada / Australia</span>
           </div>
           <header className="reader-header">
             <div>
