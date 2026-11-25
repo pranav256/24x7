@@ -203,11 +203,10 @@ svg {
   top: 0;
   z-index: 30;
   border-bottom: 0.0625rem solid var(--border);
-  background: var(--header-background);
-  backdrop-filter: blur(1.25rem);
+  background: var(--background);
 }
 .header-inner {
-  max-width: 90rem;
+  max-width: 100rem;
   min-height: 4.5rem;
   margin: auto;
   padding-inline: 2.5rem;
@@ -250,7 +249,9 @@ svg {
   padding-inline: 1rem;
 }
 .primary-nav .nav-active {
-  background: var(--muted);
+  background: transparent;
+  box-shadow: inset 0 -0.125rem var(--primary-text);
+  border-radius: 0;
 }
 .primary-nav svg {
   width: 1rem;
@@ -280,8 +281,8 @@ svg {
 }
 .app-layout {
   display: grid;
-  grid-template-columns: 14rem minmax(0, 1fr);
-  gap: 2.5rem;
+  grid-template-columns: 14.5rem minmax(0, 1fr);
+  gap: 3rem;
   max-width: none;
   padding: 0 2.5rem 0 0;
   margin: auto;
@@ -292,25 +293,25 @@ svg {
   align-self: start;
   width: 100%;
   height: calc(100dvh - 4.5rem);
-  max-height: 48rem;
+  max-height: none;
   border-right: 0.0625rem solid var(--border);
   background: transparent;
-  padding: 0 1.25rem 0 2rem;
+  padding: 0 1.5rem 0 2.5rem;
   gap: 1.5rem;
 }
 .rail-heading {
-  min-height: 3rem;
+  min-height: 3.5rem;
   height: auto;
   border: 0;
-  padding: 1rem 0.75rem;
+  padding: 1rem 0;
 }
 .rail-mark {
   font-family: var(--font-serif);
-  font-size: 1.1875rem;
+  font-size: 1.125rem;
 }
 .rail-content {
   padding: 0;
-  gap: 2rem;
+  gap: 2.5rem;
   flex: 0 1 auto;
   overflow: visible;
 }
@@ -319,30 +320,36 @@ svg {
   letter-spacing: 0;
   text-transform: none;
   color: var(--muted-foreground);
-  padding: 0 0.75rem 0.75rem;
+  padding: 0 0 0.75rem;
   margin: 0;
 }
 .rail-content button {
   justify-content: flex-start;
-  border-radius: 0.5rem;
+  border-radius: 0;
   font-size: 0.8125rem;
   min-height: 2.75rem;
   font-weight: 400;
-  padding-inline: 0.75rem;
+  padding-inline: 0.5rem;
 }
 .rail-content button[aria-current] {
-  background: var(--primary-wash);
+  background: transparent;
   color: var(--primary-text);
   font-weight: 500;
+  box-shadow: inset 0.125rem 0 var(--primary-text);
+}
+.section-number {
+  font-family: var(--font-mono);
+  font-size: 0.6875rem;
+  color: var(--muted-foreground);
 }
 .rail-library p {
-  padding: 0.75rem;
+  padding: 0.75rem 0;
   font-size: 0.6875rem;
   color: var(--muted-foreground);
 }
 .rail-footer {
-  margin-top: 0;
-  padding: 1.5rem 0.75rem;
+  margin-top: auto;
+  padding: 1.5rem 0;
   border-top: 0.0625rem solid var(--border);
 }
 .rail-footer p {
@@ -364,7 +371,7 @@ svg {
 .reader-main {
   min-width: 0;
   width: 100%;
-  max-width: 73rem;
+  max-width: 76rem;
   margin-inline: auto;
   padding-bottom: 2rem;
 }
@@ -373,7 +380,7 @@ svg {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 1.5rem;
+  gap: 1rem;
   border-bottom: 0.0625rem solid var(--border);
   font-family: var(--font-mono);
   font-size: 0.6875rem;
@@ -384,29 +391,43 @@ svg {
   align-items: center;
   justify-content: space-between;
   gap: 2rem;
-  padding-block: 2rem;
+  padding-block: 1.75rem;
+}
+.reader-header > div {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 2rem;
+  width: 100%;
 }
 .reader-header h1 {
-  font-size: 2.75rem;
-  line-height: 1.1;
-  letter-spacing: -0.045em;
+  font-size: clamp(3rem, 4.5vw, 5rem);
+  line-height: 1;
+  letter-spacing: -0.03em;
 }
 .reader-header em {
+  font-style: normal;
   font-weight: inherit;
   color: var(--primary-text);
 }
 .reader-header p {
   color: var(--muted-foreground);
-  font-size: 0.8125rem;
-  margin-top: 0.75rem;
+  font-size: 0.875rem;
+  line-height: 1.7;
+  max-width: 18rem;
 }
 .edition-tools {
+  position: sticky;
+  top: 4.5rem;
+  z-index: 20;
+  background: var(--background);
   display: flex;
   align-items: center;
   justify-content: space-between;
   gap: 1rem;
-  padding-block: 1rem;
-  border-block: 0.0625rem solid var(--line-strong);
+  padding-block: 0.75rem;
+  border-top: 0.1875rem double var(--line-strong);
+  border-bottom: 0.0625rem solid var(--line-strong);
 }
 .edition-controls {
   display: flex;
@@ -420,8 +441,8 @@ svg {
   align-items: center;
   padding: 0.25rem;
   gap: 0.25rem;
-  border-radius: 0.5rem;
-  background: var(--card);
+  border-radius: 0.25rem;
+  background: transparent;
   border: 0.0625rem solid var(--border);
 }
 .country-switch button,
@@ -435,7 +456,7 @@ svg {
   border: 0;
   background: transparent;
   color: var(--muted-foreground);
-  padding: 0.5rem 0.875rem;
+  padding: 0.5rem 0.75rem;
   border-radius: 0.375rem;
   font-size: 0.8125rem;
   white-space: nowrap;
@@ -470,7 +491,7 @@ svg {
   align-items: center;
   justify-content: space-between;
   gap: 1.5rem;
-  padding-block: 1.5rem 1rem;
+  padding-block: 1.5rem;
 }
 .publisher-count {
   font-size: 0.75rem;
@@ -482,7 +503,7 @@ svg {
   gap: 0.875rem;
 }
 .edition-context h2 {
-  font-size: 1.75rem;
+  font-size: 2rem;
   line-height: 1.2;
   letter-spacing: -0.025em;
 }
@@ -553,9 +574,9 @@ svg {
 }
 .cover-grid {
   display: grid;
-  grid-template-columns: minmax(0, 1.85fr) minmax(0, 1fr);
-  gap: 2rem;
-  padding-block: 1rem 2rem;
+  grid-template-columns: minmax(0, 1.9fr) minmax(0, 1fr);
+  gap: 2.5rem;
+  padding-block: 0 2rem;
   border-bottom: 0.0625rem solid var(--line-strong);
 }
 .cover-grid-single {
@@ -569,7 +590,7 @@ svg {
 }
 .story {
   display: grid;
-  grid-template-columns: minmax(0, 1fr) 7.5rem;
+  grid-template-columns: minmax(0, 1fr) 10rem;
   align-items: start;
   gap: 1.5rem;
   padding: 0;
@@ -582,9 +603,10 @@ svg {
   min-width: 0;
   display: flex;
   flex-direction: column;
-  gap: 0.75rem;
+  gap: 1rem;
 }
 .story-meta {
+  order: 3;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -610,9 +632,9 @@ svg {
   flex-shrink: 0;
 }
 .story h3 {
-  font-size: 1.375rem;
-  line-height: 1.3;
-  letter-spacing: -0.02em;
+  font-size: 1.875rem;
+  line-height: 1.2;
+  letter-spacing: -0.015em;
   overflow-wrap: anywhere;
 }
 .story h3 a {
@@ -620,24 +642,24 @@ svg {
   min-height: 2.75rem;
 }
 .story-featured {
-  display: grid;
-  grid-template-columns: minmax(0, 1.05fr) minmax(0, 0.95fr);
+  display: flex;
+  flex-direction: column;
   align-items: start;
   gap: 1.5rem;
   min-height: 0;
 }
 .story-featured h3 {
-  font-size: 2.25rem;
+  font-size: clamp(2.25rem, 3vw, 3.25rem);
   line-height: 1.15;
   letter-spacing: -0.03em;
 }
 .story-summary {
   color: var(--muted-foreground);
-  font-size: 0.875rem;
+  font-size: 0.9375rem;
   line-height: 1.7;
   margin-top: 0;
   display: -webkit-box;
-  -webkit-line-clamp: 3;
+  -webkit-line-clamp: 2;
   -webkit-box-orient: vertical;
   overflow: hidden;
 }
@@ -659,10 +681,10 @@ svg {
 .story-image-link {
   display: block;
   position: relative;
-  width: 7.5rem;
+  width: 10rem;
   aspect-ratio: 4 / 3;
   overflow: hidden;
-  border-radius: 0.5rem;
+  border-radius: 0.25rem;
   background: var(--secondary);
   margin: 0;
 }
@@ -685,9 +707,10 @@ svg {
 .cover-side {
   display: flex;
   flex-direction: column;
-  gap: 1.5rem;
-  padding-left: 2rem;
+  gap: 2rem;
+  padding-left: 2.5rem;
   border-left: 0.0625rem solid var(--border);
+  counter-reset: brief;
 }
 .brief-heading {
   display: flex;
@@ -697,7 +720,7 @@ svg {
 }
 .brief-heading h2 {
   font-family: var(--font-sans);
-  font-size: 0.75rem;
+  font-size: 0.8125rem;
   font-weight: 500;
   color: var(--muted-foreground);
 }
@@ -707,22 +730,35 @@ svg {
 }
 .story-compact {
   display: block;
-  padding-bottom: 1.5rem;
+  padding-bottom: 2rem;
   border-bottom: 0.0625rem solid var(--border);
+  counter-increment: brief;
+}
+.story-compact::before {
+  content: '0' counter(brief);
+  display: block;
+  margin-bottom: 0.75rem;
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  color: var(--primary-text);
+}
+.story-compact .story-summary {
+  font-size: 0.875rem;
+  -webkit-line-clamp: 3;
 }
 .story-compact:last-child {
   padding-bottom: 0;
   border-bottom: 0;
 }
 .story-compact h3 {
-  font-size: 1.5rem;
+  font-size: 1.875rem;
 }
 .story-featured .story-image-link {
   width: 100%;
   height: auto;
   aspect-ratio: 16 / 10;
   margin: 0;
-  border-radius: var(--radius);
+  border-radius: 0.25rem;
 }
 .story-featured .story-image-link img {
   object-fit: contain;
@@ -757,11 +793,10 @@ svg {
 }
 .story-grid {
   display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  column-gap: 2.5rem;
+  grid-template-columns: minmax(0, 1fr);
 }
 .story-grid .story {
-  padding-block: 1.5rem;
+  padding-block: 2rem;
   border-bottom: 0.0625rem solid var(--border);
 }
 .edition-end {
@@ -769,7 +804,8 @@ svg {
   align-items: center;
   justify-content: space-between;
   gap: 1.5rem;
-  margin-top: 1.5rem;
+  padding-block: 1.5rem;
+  border-bottom: 0.0625rem solid var(--border);
 }
 .edition-end p,
 .edition-complete {
@@ -1095,7 +1131,7 @@ svg {
   }
   .app-layout {
     gap: 2rem;
-    grid-template-columns: 13rem minmax(0, 1fr);
+    grid-template-columns: 14rem minmax(0, 1fr);
   }
   .cover-grid {
     gap: 1.5rem;
@@ -1106,10 +1142,10 @@ svg {
   }
   .story {
     gap: 1rem;
-    grid-template-columns: minmax(0, 1fr) 6rem;
+    grid-template-columns: minmax(0, 1fr) 8rem;
   }
   .story-image-link {
-    width: 6rem;
+    width: 8rem;
   }
   .search-controls .reader-search {
     width: 12rem;
@@ -1151,6 +1187,15 @@ svg {
   }
   .edition-tools {
     align-items: end;
+    position: static;
+  }
+  .reader-header > div {
+    align-items: start;
+    flex-direction: column;
+    gap: 1rem;
+  }
+  .reader-header p {
+    max-width: 36rem;
   }
   .edition-tools .edition-controls {
     flex: 1;
@@ -1199,10 +1244,10 @@ svg {
     padding-block: 1.75rem;
   }
   .reader-header h1 {
-    font-size: clamp(2.5rem, 9.5vw, 3.5rem);
+    font-size: clamp(2.5rem, 10vw, 3.5rem);
   }
   .reader-header p {
-    font-size: 0.75rem;
+    font-size: 0.875rem;
     max-width: 35ch;
   }
   .edition-controls {
@@ -1281,7 +1326,7 @@ svg {
     font-size: 1.9375rem;
   }
   .story-summary {
-    font-size: 0.8125rem;
+    font-size: 0.875rem;
   }
   .cover-side {
     border-left: 0;
@@ -1290,7 +1335,7 @@ svg {
     gap: 1.5rem;
   }
   .story-compact h3 {
-    font-size: 1.375rem;
+    font-size: 1.5rem;
   }
   .cover-grid .story-compact {
     border-left: 0;
@@ -1304,6 +1349,12 @@ svg {
   .story {
     grid-template-columns: minmax(0, 1fr) 6rem;
     gap: 1rem;
+  }
+  .story-image-link {
+    width: 6rem;
+  }
+  .story-grid .story-summary {
+    display: none;
   }
   .story h3 {
     font-size: 1.3125rem;

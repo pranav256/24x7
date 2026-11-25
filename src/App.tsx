@@ -61,6 +61,9 @@ export default function App() {
   const feed = useFeed(location.country, location.category, demo);
   const navigate = (changes: Partial<ReaderLocation>, replace = false) => {
     const next = { ...locationRef.current, ...changes };
+    if (next.country !== locationRef.current.country || next.category !== locationRef.current.category) {
+      window.scrollTo({ top: 0, behavior: 'instant' });
+    }
     locationRef.current = next;
     window.history[replace ? 'replaceState' : 'pushState'](
       null,
@@ -162,9 +165,10 @@ export default function App() {
           <SidebarContent className="rail-content">
             <SidebarGroup>
               <SidebarGroupLabel className="rail-label">Sections</SidebarGroupLabel>
-              {categories.map((category) => (
+              {categories.map((category, index) => (
                 <SidebarItem
                   key={category}
+                  icon={<span className="section-number" aria-hidden="true">{String(index + 1).padStart(2, '0')}</span>}
                   label={categoryLabel(category)}
                   active={location.view === 'headlines' && location.category === category}
                   aria-current={
@@ -208,7 +212,7 @@ export default function App() {
                 year: 'numeric',
               })}
             </time>
-            <span>India / United States / United Kingdom / Canada / Australia</span>
+            <span>{countries[location.country]} edition · Five countries, seven sections</span>
           </div>
           <header className="reader-header">
             <div>
@@ -226,7 +230,7 @@ export default function App() {
               <p>
                 {location.view === 'saved'
                   ? 'Good stories, kept for a quieter moment. Saved in this browser.'
-                  : 'Original reporting. Different perspectives. Room to think.'}
+                  : 'News across borders. Stories worth keeping.'}
               </p>
             </div>
           </header>
@@ -366,7 +370,7 @@ export default function App() {
             </a>
             <span>Reporting belongs to its original publishers.</span>
             <a
-              href="https://github.com/pranav256/news-react"
+              href="https://github.com/pranav256/24x7"
               target="_blank"
               rel="noopener noreferrer"
             >

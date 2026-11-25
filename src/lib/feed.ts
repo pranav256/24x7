@@ -59,7 +59,7 @@ export function parseFeed(value: unknown): Feed {
     throw new Error('The feed returned an unexpected format.')
   }
   const seen = new Set<string>()
-  const articles = value.articles.slice(0, 100).flatMap((item) => {
+  const articles = value.articles.slice(0, 500).flatMap((item) => {
     const article = parseArticle(item)
     if (!article || seen.has(article.id)) return []
     seen.add(article.id)

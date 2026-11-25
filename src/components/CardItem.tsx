@@ -72,7 +72,7 @@ export default function CardItem({ article, featured, compact, saved, onSave }: 
             <BookmarkIcon aria-hidden="true" />
           </Button>
         </div>
-        {featured && article.description && <p className="story-summary">{article.description}</p>}
+        {article.description && <p className="story-summary">{article.description}</p>}
       </div>
       {showImage && (
         <a

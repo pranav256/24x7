@@ -34,6 +34,13 @@ describe('feed contracts', () => {
     expect(result.providers).toHaveLength(20)
     expect(filterArticles(result.articles, '', '', 'newest').map((item) => item.id)).toEqual(['https://example.com/a', 'https://example.com/b'])
   })
+  it('accepts a full 500-story edition and restores it from cache with the same bound', () => {
+    const articles = Array.from({ length: 501 }, (_, index) => ({ ...raw, url: `https://example.com/report-${index}` }))
+    const feed = parseFeed({ articles })
+    expect(feed.articles).toHaveLength(500)
+    expect(cachedFeed(JSON.stringify(feed))?.articles).toHaveLength(500)
+    expect(cachedFeed(JSON.stringify({ ...feed, articles }))).toBeNull()
+  })
 })
 describe('local reading data', () => {
   it('recovers from corrupt and unsupported preferences', () => {

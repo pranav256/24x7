@@ -27,6 +27,7 @@ For browser checks against the production build, set READER_TEST_SERVER to previ
 
 - Select India, the United States, the United Kingdom, Canada or Australia, and one of seven sections.
 - Search headlines and publishers, filter by source, and choose chronological order.
+- Scroll to reveal the next 12 stories automatically, up to the API’s 500-story edition. A load button also supports keyboard use and browsers without scroll observation.
 - Read the supplied summaries and open complete reports at their publishers.
 - Save up to 300 stories, track read/unread state, and export or import a reading-list backup of up to 2 MB.
 - Share publisher links. Existing duplicates keep their reading state when imported.

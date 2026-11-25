@@ -50,7 +50,7 @@ test('editorial layout, fonts and dialog controls fit the supported viewports', 
     await page.screenshot({ path: testInfo.outputPath(`filters-${width}.png`) });
     await page.getByLabel('Appearance').selectOption('dark');
     await page.getByRole('button', { name: 'Show stories' }).click();
-    await page.screenshot({ path: testInfo.outputPath(`headlines-dark-${width}.png`) });
+    await page.screenshot({ path: testInfo.outputPath(`headlines-dark-${width}.png`), animations: 'disabled' });
     const dark = await page.evaluate(captureSpacingSnapshot);
     dark.name = `dark-${width}`;
     states.push(dark);

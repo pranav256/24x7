@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import CardItem from './CardItem';
 import Spinner from './Spinner';
 import { Button } from '@/components/ui/button';
@@ -19,6 +19,27 @@ type Props = {
 };
 export default function CardHolder(props: Props) {
   const [limit, setLimit] = useState(12);
+  const section = useRef<HTMLElement>(null);
+  const focusAfterLoad = useRef<number | null>(null);
+  const sentinel = useRef<HTMLDivElement>(null);
+  const hasMore = limit < props.articles.length;
+  useEffect(() => {
+    if (focusAfterLoad.current === null) return;
+    section.current?.querySelectorAll<HTMLAnchorElement>('.story h3 a')[focusAfterLoad.current]?.focus();
+    focusAfterLoad.current = null;
+  }, [limit]);
+  useEffect(() => {
+    const element = sentinel.current;
+    if (!element || !hasMore || !('IntersectionObserver' in window)) return;
+    const observer = new IntersectionObserver(([entry]) => {
+      // Let keyboard users finish with the controls before adding more stories.
+      if (entry.isIntersecting && !element.contains(document.activeElement)) {
+        setLimit((value) => Math.min(value + 12, props.articles.length));
+      }
+    }, { rootMargin: '240px 0px' });
+    observer.observe(element);
+    return () => observer.disconnect();
+  }, [limit, hasMore, props.articles.length]);
   const [lead, ...rest] = props.articles;
   const card = (article: Article, featured = false, compact = false) => (
     <CardItem
@@ -31,7 +52,7 @@ export default function CardHolder(props: Props) {
     />
   );
   return (
-    <section aria-label="Stories" aria-busy={props.loading}>
+    <section ref={section} aria-label="Stories" aria-busy={props.loading}>
       {props.error && (
         <div className="reader-notice" role="alert">
           <p>
@@ -63,7 +84,7 @@ export default function CardHolder(props: Props) {
             {rest.length > 0 && (
               <div className="cover-side">
                 <div className="brief-heading">
-                  <h2>Also in this edition</h2>
+                  <h2>In brief</h2>
                   <span aria-hidden="true">↘</span>
                 </div>
                 {rest.slice(0, 2).map((article) => card(article, false, true))}
@@ -74,22 +95,25 @@ export default function CardHolder(props: Props) {
             <>
               <div className="more-heading">
                 <h2>
-                  Latest stories<span className="accent">.</span>
+                  The latest reports<span className="accent">.</span>
                 </h2>
-                <p>From the original publishers</p>
+                <p>Scroll to keep reading</p>
               </div>
               <div className="story-grid">
                 {rest.slice(2, limit - 1).map((article) => card(article))}
               </div>
             </>
           )}
-          <div className="edition-end">
-            <p>
+          <div className="edition-end" ref={sentinel}>
+            <p role="status" aria-live="polite" aria-atomic="true">
               Showing {Math.min(limit, props.articles.length)} of {props.articles.length} stories
             </p>
-            {limit < props.articles.length ? (
-              <Button variant="outline" onClick={() => setLimit((value) => value + 12)}>
-                More stories <span aria-hidden="true">↓</span>
+            {hasMore ? (
+              <Button variant="outline" onClick={() => {
+                focusAfterLoad.current = limit;
+                setLimit((value) => value + 12);
+              }}>
+                Load more stories <span aria-hidden="true">↓</span>
               </Button>
             ) : (
               <span className="edition-complete">You’re up to date with this edition.</span>

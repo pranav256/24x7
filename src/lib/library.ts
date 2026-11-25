@@ -58,7 +58,7 @@ export function cachedFeed(raw: string | null): Feed | null {
   if (!raw || raw.length > MAX_IMPORT_BYTES) return null
   try {
     const value: unknown = JSON.parse(raw)
-    if (!isRecord(value) || !Array.isArray(value.articles) || value.articles.length > 100) return null
+    if (!isRecord(value) || !Array.isArray(value.articles) || value.articles.length > 500) return null
     const seen = new Set<string>()
     const articles = value.articles.flatMap((x) => { const article = parseArticle(x); if (!article || seen.has(article.id)) return []; seen.add(article.id); return [article] })
     if (value.articles.length && !articles.length) return null
