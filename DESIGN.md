@@ -4,7 +4,7 @@ Keep the selected Romanesque-based editorial system and Iconoir icons. Use the w
 
 The reading app starts with its edition controls and headlines. The lead story pairs its headline, publisher metadata, summary and actions with its photograph. Supporting stories sit in a divided column, with the latest reports below. At narrow widths, stack the lead photograph after its copy. Avoid promotional sections before the stories.
 
-The front page uses a large Newsreader masthead, a compact numbered section rail, a broad lead-story column and numbered text briefs. Latest reports flow in full-width divided rows with thumbnails. Keep section and country changes at the top of the new edition. The desktop edition controls stay available while scrolling; mobile controls remain in the page flow.
+The front page uses a compact section heading, a numbered section rail, a broad lead-story column and numbered text briefs. Stories take priority over introductory titles and taglines. Latest reports flow in full-width divided rows with thumbnails. Keep section and country changes at the top of the new edition. The desktop edition controls stay available while scrolling; mobile controls remain in the page flow.
 
 Reveal stories in batches of 12 near the end of the visible list, with a polite visible count and an explicit end state. Keep a manual load control for keyboards and browsers without IntersectionObserver; manual loading focuses the first new headline. Read the full bounded 500-story feed and preserve the same bound for cached editions.
 

@@ -376,7 +376,7 @@ svg {
   padding-bottom: 2rem;
 }
 .edition-dateline {
-  min-height: 3.5rem;
+  min-height: 2.5rem;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -391,24 +391,12 @@ svg {
   align-items: center;
   justify-content: space-between;
   gap: 2rem;
-  padding-block: 1.75rem;
-}
-.reader-header > div {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 2rem;
-  width: 100%;
+  padding-block: 1rem;
 }
 .reader-header h1 {
-  font-size: clamp(3rem, 4.5vw, 5rem);
-  line-height: 1;
-  letter-spacing: -0.03em;
-}
-.reader-header em {
-  font-style: normal;
-  font-weight: inherit;
-  color: var(--primary-text);
+  font-size: 2rem;
+  line-height: 1.2;
+  letter-spacing: -0.025em;
 }
 .reader-header p {
   color: var(--muted-foreground);
@@ -491,7 +479,7 @@ svg {
   align-items: center;
   justify-content: space-between;
   gap: 1.5rem;
-  padding-block: 1.5rem;
+  padding-block: 1rem;
 }
 .publisher-count {
   font-size: 0.75rem;
@@ -502,7 +490,7 @@ svg {
   align-items: baseline;
   gap: 0.875rem;
 }
-.edition-context h2 {
+.edition-context h1 {
   font-size: 2rem;
   line-height: 1.2;
   letter-spacing: -0.025em;
@@ -1189,14 +1177,6 @@ svg {
     align-items: end;
     position: static;
   }
-  .reader-header > div {
-    align-items: start;
-    flex-direction: column;
-    gap: 1rem;
-  }
-  .reader-header p {
-    max-width: 36rem;
-  }
   .edition-tools .edition-controls {
     flex: 1;
   }
@@ -1234,21 +1214,19 @@ svg {
     padding-inline: 1.25rem;
   }
   .edition-dateline {
-    min-height: 3rem;
+    min-height: 2.25rem;
     font-size: 0.625rem;
   }
   .edition-dateline > span {
     display: none;
   }
   .reader-header {
-    padding-block: 1.75rem;
+    align-items: start;
+    flex-direction: column;
+    gap: 0.5rem;
   }
   .reader-header h1 {
-    font-size: clamp(2.5rem, 10vw, 3.5rem);
-  }
-  .reader-header p {
-    font-size: 0.875rem;
-    max-width: 35ch;
+    font-size: 1.625rem;
   }
   .edition-controls {
     padding: 0;
@@ -1292,12 +1270,12 @@ svg {
   .reader-toolbar {
     flex-wrap: wrap;
     gap: 1rem;
-    padding-block: 1.25rem;
+    padding-block: 1rem;
   }
   .edition-context {
     flex: 1;
   }
-  .edition-context h2 {
+  .edition-context h1 {
     font-size: 1.625rem;
   }
   .search-controls {

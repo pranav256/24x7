@@ -214,26 +214,12 @@ export default function App() {
             </time>
             <span>{countries[location.country]} edition · Five countries, seven sections</span>
           </div>
-          <header className="reader-header">
-            <div>
-              <h1>
-                {location.view === 'saved' ? (
-                  <>
-                    Your reading <em>list.</em>
-                  </>
-                ) : (
-                  <>
-                    The daily <em>edition.</em>
-                  </>
-                )}
-              </h1>
-              <p>
-                {location.view === 'saved'
-                  ? 'Good stories, kept for a quieter moment. Saved in this browser.'
-                  : 'News across borders. Stories worth keeping.'}
-              </p>
-            </div>
-          </header>
+          {location.view === 'saved' && (
+            <header className="reader-header">
+              <h1>Your reading list.</h1>
+              <p>Saved in this browser.</p>
+            </header>
+          )}
           {demo && (
             <p className="demo-notice" role="note">
               Demo. Fictional stories and browser-local saved reading.
@@ -285,7 +271,7 @@ export default function App() {
               </div>
               <div className="reader-toolbar">
                 <div className="edition-context">
-                  <h2>{categoryLabel(location.category)}</h2>
+                  <h1>{categoryLabel(location.category)}</h1>
                   <span className="result-count" role="status">
                     {feed.loading && !feed.feed ? 'Loading edition…' : articles.length + ' stories'}
                   </span>
