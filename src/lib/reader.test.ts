@@ -15,6 +15,28 @@ describe('feed contracts', () => {
     expect(result.articles[0].urlToImage).toBeNull()
     expect(result.fetchedAt).toBeNull()
   })
+  it.each([
+    ['description', { description: { toString: null } }],
+    ['author', { author: { toString: null } }],
+    ['content', { content: { toString: null } }],
+    ['image URL', { urlToImage: { toString: null } }],
+    ['source name', { source: { name: { toString: null } } }],
+  ])('ignores malformed %s metadata without rejecting the edition', (_field, metadata) => {
+    const payload = { articles: [{ ...raw, ...metadata }, { ...raw, url: 'https://example.com/other' }] }
+    expect(() => parseFeed(payload)).not.toThrow()
+    expect(parseFeed(payload).articles.map((item) => item.url)).toEqual([raw.url, 'https://example.com/other'])
+  })
+  it('still excludes matching topics in valid string metadata', () => {
+    for (const metadata of [
+      { description: 'Artificial intelligence news' },
+      { author: 'Artificial intelligence reporter' },
+      { content: 'Artificial intelligence news' },
+      { urlToImage: 'https://example.com/ai/image.jpg' },
+      { source: { name: 'Artificial intelligence daily' } },
+    ]) {
+      expect(parseArticle({ ...raw, ...metadata })).toBeNull()
+    }
+  })
   it('distinguishes an empty valid feed from a malformed or failed response', () => {
     expect(parseFeed({ articles: [] }).articles).toEqual([])
     expect(() => parseFeed({ articles: 'bad' })).toThrow()
