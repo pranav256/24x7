@@ -46,7 +46,7 @@ export function parseArticle(value: unknown): Article | null {
   if (!isRecord(value)) return null
   const url = safeUrl(value.url)
   const title = plainText(value.title)
-  if (!url || !title || title === '[Removed]' || excludedTopics.test([title, value.description, value.author, value.content, url, value.urlToImage, isRecord(value.source) ? value.source.name : ''].join(' '))) return null
+  if (!url || !title || title === '[Removed]' || excludedTopics.test([title, value.description, value.author, value.content, url, value.urlToImage, isRecord(value.source) ? value.source.name : ''].filter((field) => typeof field === 'string').join(' '))) return null
   const source = isRecord(value.source) ? value.source : {}
   return {
     id: url, url, title, description: plainText(value.description), author: plainText(value.author, 200),
